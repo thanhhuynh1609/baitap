@@ -89,4 +89,13 @@ public class UserController {
 
         return "redirect:/userDetail";
     }
+
+    // Xử lý xóa người dùng
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam String username) {
+        users.removeIf(user -> user.getUsername().equals(username));
+        System.out.println("User Deleted: " + username);
+
+        return "redirect:/userDetail";
+    }
 }

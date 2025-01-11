@@ -5,95 +5,70 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #333;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+        .user-list {
+            background: #fff;
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 600px;
             text-align: left;
         }
-        th {
-            background-color: #6a11cb;
-            color: black;
-            text-transform: uppercase;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 5px;
+        h2 {
             text-align: center;
-            font-size: 14px;
-            font-weight: bold;
+            color: #444;
+        }
+        .user {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .user strong {
+            color: #555;
+        }
+        a {
+            text-decoration: none;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            color: #fff;
+            border-radius: 5px;
             transition: background 0.3s ease;
         }
-        td {
-            color: #000000; 
-            }
-
-        .button:hover {
-            background: linear-gradient(135deg, #45a049, #4CAF50);
+        a:hover {
+            background: linear-gradient(135deg, #38f9d7, #43e97b);
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>User Details</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Lặp qua danh sách users -->
-            <tr th:each="user : ${users}">
-                <td th:text="${user.username}">Default Username</td>
-                <td th:text="${user.email}">Default Email</td>
-                <td th:text="${user.phone}">Default Phone</td>
-                <td th:text="${user.address}">Default Address</td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="#" class="button">Add New User</a>
-</div>
+    <div class="user-list">
+        <h2>User Details</h2>
+        <a href="/addUser" style="margin-bottom: 20px; display: inline-block;">Add New User</a>
+        <div th:each="user : ${users}" class="user">
+            <div class="user-details">
+                <strong>Username:</strong> <span th:text="${user.username}"></span>
+                <strong>Email:</strong> <span th:text="${user.email}"></span>
+                <strong>Phone:</strong> <span th:text="${user.phone}"></span>
+                <strong>Address:</strong> <span th:text="${user.address}"></span>
+            </div>
+            <a th:href="'/editUser?username=' + ${user.username}">Edit</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.project1.model.User;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -88,5 +89,19 @@ public class UserController {
         System.out.println("Address: " + address);
 
         return "redirect:/userDetail";
+    }
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("username") String username) {
+        // Xóa người dùng theo tên
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            if (user.getUsername().equals(username)) {
+                iterator.remove();
+                System.out.println("User deleted: " + username); // Hiển thị trong console
+                break;
+            }
+        }
+        return "redirect:/userDetail"; // Quay lại trang userDetail sau khi xóa
     }
 }

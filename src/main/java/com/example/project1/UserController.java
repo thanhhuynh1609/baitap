@@ -11,7 +11,7 @@ public class UserController {
     public String getUserDetail(Model model) {
         // Hardcode thông tin người dùng
         model.addAttribute("username", "Le Anh Thanh");
-        model.addAttribute("email", "leanhbabo@gmail.com");
+        model.addAttribute("email", "leanhthanh@gmail.com");
         model.addAttribute("phone", "0878112334");
         model.addAttribute("address", "29, Truong Son, Hoa Tho Tay, Cam Le, Da Nang");
 
